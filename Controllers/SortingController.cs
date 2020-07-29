@@ -13,8 +13,8 @@ namespace SortingVisualization.Controllers
         [HttpPost]
         public ActionResult<string> Sort([FromBody] SortingParams sortingParams)
         {
-            string[] strings = sortingParams.input.Split(',');
-            List<(int, int)> result = sortingParams.type == "Integer"
+            string[] strings = sortingParams.Input.Split(',');
+            List<(int, int)> result = sortingParams.Type == "Integer"
                 ? Bubble(strings.Select(Int64.Parse).ToArray())
                 : Bubble(strings);
             return JsonConvert.SerializeObject(result);

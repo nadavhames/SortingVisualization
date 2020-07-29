@@ -7,7 +7,7 @@ export class Home extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {timeline: [], currentStep: 0, loading: true};
+        this.state = {values: [], timeline: [], currentStep: 0, loading: true};
         // pass in `this` so that populate function can call setState
         this.populateSortingData = this.populateSortingData.bind(this);
     }
@@ -15,7 +15,7 @@ export class Home extends Component {
     render() {
         let output = this.state.loading
           ? <p><em>Loading...</em></p>
-          : <ResultView/>;
+          : <ResultView state={this.state}/>;
 
         return (
             <div>
@@ -36,7 +36,6 @@ export class Home extends Component {
             body: JSON.stringify(formData)
         });
         const data = await response.json();
-        console.log(data);
-        this.setState({timeline: data, currentStep: 0, loading: false});
+        this.setState({values: formData.input, timeline: JSON.parse(data), currentStep: 0, loading: false});
     }
 }

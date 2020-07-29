@@ -4,8 +4,8 @@ namespace SortingVisualization
 {
     public class SortingParams
     {
-        public string input { get; set; }
+        public string Input { get; set; }
         
-        public string type { get; set; }
+        public string Type { get; set; }
     }
 }

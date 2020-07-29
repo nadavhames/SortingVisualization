@@ -15,7 +15,7 @@ export class Home extends Component {
     render() {
         // conditionally render results if data available
         let output = this.state.loading
-          ? <p className="text-center"><em>Press Sort or the Enter Key to Run...</em></p>
+          ? <p className="text-center"><em>Press Sort to Run...</em></p>
           : <ResultView state={this.state}/>;
 
         return (

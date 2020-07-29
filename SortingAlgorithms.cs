@@ -5,6 +5,10 @@ namespace SortingVisualization
 {
     public static class SortingAlgorithms
     {
+        /**
+         * Bubble Sort. Can sort all types that are comparable.
+         * Returns list of all swaps that took place chronologically
+         */
         public static List<(int, int)> BubbleSort<T>(T[] values) where T : IComparable
         {
             List<(int, int)> steps = new List<(int, int)>();

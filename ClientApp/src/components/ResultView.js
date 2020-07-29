@@ -5,20 +5,23 @@ import HighchartsReact from 'highcharts-react-official'
 export class ResultView extends React.Component {
     constructor(props) {
         super(props);
-        this.data = this.initializeData(props.state.values)
         this.state = {
+            // Highcharts config
             options: {
                 chart: {
                     type: 'bar',
-                    marginLeft: 100
+                    marginLeft: 200,
+                    height: 650
                 },
-                title: false,
+                title: {
+                    text: "Bubble Sort"
+                },
                 yAxis: {
                     title: {
                         text: ''
                     }
                 },
-                xAxis:  {
+                xAxis: {
                     type: 'category',
                     min: 0,
                     labels: {
@@ -32,7 +35,6 @@ export class ResultView extends React.Component {
                 series: [{
                     dataLabels: {
                         enabled: true,
-                        // format: '{y:,.2f}'
                     },
                     dataSorting: {
                         enabled: true,
@@ -42,6 +44,8 @@ export class ResultView extends React.Component {
                 }]
             }
         }
+        // initialize the incoming data to Highcharts format and play the animation sequence
+        this.data = this.initializeData(this.props.state.values)
         this.updateSeries(this.data);
     }
 
@@ -59,14 +63,13 @@ export class ResultView extends React.Component {
     }
 
     processDataStep(data, step) {
-        console.log(data, step);
         // Find indexes of the dataset that need to be swapped
         let item1Index = -1;
         let item2Index = -1;
         for (const [index, element] of data.entries()) {
             if (element.order.value === step.Item1) {
                 item1Index = index;
-            } 
+            }
             if (element.order.value === step.Item2) {
                 item2Index = index
             }
@@ -75,17 +78,18 @@ export class ResultView extends React.Component {
             }
         }
         // Swap order.value between indexes
-        console.log(item1Index, item2Index);
         let firstVal = data[item1Index].order.value;
         data[item1Index].order.value = data[item2Index].order.value;
         data[item2Index].order.value = firstVal;
     }
-    
+
     updateSeries(data) {
         let currentData = data;
         let stop = false;
-        let currentStep = this.props.state.currentStep;
+        let currentStep = 0;
         let timeline = this.props.state.timeline;
+        // iterate through steps of the timeline and perform modifications
+        // Highcharts automatically updates to state changes
         setInterval(() => {
             this.setState({
                 options: {
@@ -97,7 +101,7 @@ export class ResultView extends React.Component {
             if (currentStep <= timeline.length - 1) {
                 if (!stop) this.processDataStep(currentData, timeline[currentStep]);
                 if (currentStep === timeline.length - 1) stop = true;
-                if (currentStep < timeline.length -1) currentStep += 1;
+                if (currentStep < timeline.length - 1) currentStep += 1;
             }
         }, 1500);
     }

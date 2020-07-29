@@ -7,14 +7,15 @@ export class Home extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {values: [], timeline: [], currentStep: 0, loading: true};
+        this.state = {values: [], timeline: [], loading: true};
         // pass in `this` so that populate function can call setState
         this.populateSortingData = this.populateSortingData.bind(this);
     }
 
     render() {
+        // conditionally render results if data available
         let output = this.state.loading
-          ? <p><em>Loading...</em></p>
+          ? <p className="text-center"><em>Press Sort or the Enter Key to Run...</em></p>
           : <ResultView state={this.state}/>;
 
         return (
@@ -26,7 +27,8 @@ export class Home extends Component {
     }
 
     async populateSortingData(formData) {
-        console.log(formData);
+        // Hide the output until data received
+        this.setState({loading: true});
         const response = await fetch('/Sorting', {
             method: "POST",
             headers: {
@@ -36,6 +38,7 @@ export class Home extends Component {
             body: JSON.stringify(formData)
         });
         const data = await response.json();
-        this.setState({values: formData.input, timeline: JSON.parse(data), currentStep: 0, loading: false});
+        //  Make data visible again, save steps to state
+        this.setState({values: formData.input, timeline: JSON.parse(data), loading: false});
     }
 }

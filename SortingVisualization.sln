@@ -1,0 +1,16 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SortingVisualization", "SortingVisualization.csproj", "{EBD72303-9701-4CA6-B6D0-870E5F547010}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EBD72303-9701-4CA6-B6D0-870E5F547010}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EBD72303-9701-4CA6-B6D0-870E5F547010}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EBD72303-9701-4CA6-B6D0-870E5F547010}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EBD72303-9701-4CA6-B6D0-870E5F547010}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
